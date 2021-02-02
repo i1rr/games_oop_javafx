@@ -13,10 +13,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
-import ru.job4j.chess.firuges.black.*;
-import ru.job4j.chess.firuges.white.*;
+import ru.job4j.chess.figures.Cell;
+import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.black.*;
+import ru.job4j.chess.figures.white.*;
 
 public final class Chess extends Application {
     private static final String JOB4J = "Шахматы на www.job4j.ru";

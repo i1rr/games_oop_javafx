@@ -1,7 +1,7 @@
-package ru.job4j.chess.firuges.white;
+package ru.job4j.chess.figures.white;
 
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.figures.Cell;
+import ru.job4j.chess.figures.Figure;
 
 /**
  *
