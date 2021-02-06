@@ -21,14 +21,20 @@ public class BishopBlack implements Figure {
         if (!isDiagonal(position, dest)) {
             throw new ImpossibleMoveException();
         }
-        int size = dest.getX() - position.getX();
-        size = size > 0 ? size : size * -1;
+        int size = Math.abs(dest.getX() - position.getX());
+
         Cell[] steps = new Cell[size];
+
         int deltaX = dest.getX() - position.getX() > 0 ? 1 : -1;
         int deltaY = dest.getY() - position.getY() < 0 ? -1 : 1;
+
+        int nextX = deltaX + position.getX(); //next step for X
+        int nextY = deltaY + position.getY(); //next step for Y
+
         for (int index = 0; index < size; index++) {
-            steps[index] = Cell.findBy((index * deltaX) + deltaX + position.getX(),
-                    (index * deltaY) + deltaY+ position.getY());
+            steps[index] = Cell.findBy(
+                    (index * deltaX) + nextX,
+                    (index * deltaY) + nextY);
         }
         return steps;
     }
@@ -38,10 +44,8 @@ public class BishopBlack implements Figure {
      */
 
     public boolean isDiagonal(Cell position, Cell dest) {
-        int checkLengthX = position.getX() > dest.getX() ?
-                position.getX() - dest.getX() : dest.getX() - position.getX();
-        int checkLengthY = position.getY() > dest.getY() ?
-                position.getY() - dest.getY() : dest.getY() - position.getY();
+        int checkLengthX = Math.abs(position.getX() - dest.getX());
+        int checkLengthY = Math.abs(position.getY() - dest.getY());
         return checkLengthY == checkLengthX;
     }
 

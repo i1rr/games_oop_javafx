@@ -20,21 +20,19 @@ public final class Logic {
         figures[index] = figures[index].copy(dest);
     }
 
+    //Check if the cell is occupied
     private boolean free(Cell[] steps) throws OccupiedCellException {
-           int figuresAmount = 0;
-           for (int i = 0; i < figures.length ; i++) {
-               if (figures[i] == null) {
-                   break;
-               }
-               figuresAmount++;
-           }
-               for (int j = 0; j < figuresAmount; j++) {
-                   for (int k = 0; k < steps.length; k++) {
-                       if(figures[j].position().equals(steps[k])) {
-                           throw new OccupiedCellException();
-                       }
-                   }
-               }
+
+        for (Figure figure : figures) {
+            if (figure == null) {
+                break;
+            }
+            for (Cell step : steps) {
+                if (figure.position().equals(step)) {
+                    throw new OccupiedCellException();
+                }
+            }
+        }
 
         return true;
     }

@@ -2,13 +2,10 @@ package ru.job4j.chess.figures.black;
 
 import org.junit.Test;
 
-import org.junit.Test;
-import ru.job4j.chess.Chess;
-import ru.job4j.chess.ImpossibleMoveException;
+import ru.job4j.chess.*;
 import ru.job4j.chess.figures.Cell;
-
+import ru.job4j.chess.figures.white.BishopWhite;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class BishopBlackTest {
@@ -42,5 +39,28 @@ public class BishopBlackTest {
     public void whenIsDiagonal() {
         BishopBlack bb = new BishopBlack(Cell.C1);
         assertThat(bb.isDiagonal(bb.position(), Cell.G5), is (true));
+    }
+
+    @Test(expected = ImpossibleMoveException.class)
+    public void whenImpossibleMoveException() throws ImpossibleMoveException {
+        BishopBlack bb = new BishopBlack(Cell.C1);
+        bb.way(Cell.C2);
+    }
+
+    @Test(expected = FigureNotFoundException.class)
+    public void whenFigureNotFoundException() throws FigureNotFoundException, ImpossibleMoveException, OccupiedCellException {
+        Logic ll = new Logic();
+        ll.move(Cell.E3, Cell.A1);
+    }
+
+    @Test(expected = OccupiedCellException.class)
+    public void whenCellIsOccupied() throws FigureNotFoundException, ImpossibleMoveException, OccupiedCellException {
+        Logic ll = new Logic();
+        BishopBlack bb = new BishopBlack(Cell.A2);
+        BishopWhite bw = new BishopWhite(Cell.B3);
+        ll.add(bb);
+        ll.add(bw);
+
+        ll.move(Cell.A2, Cell.C4);
     }
 }
